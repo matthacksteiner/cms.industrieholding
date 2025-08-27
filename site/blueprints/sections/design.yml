@@ -303,6 +303,7 @@ columns:
                 extends: fields/colors
                 width: 1/4
                 translate: false
+                help: Textfarbe der Navigation im normalen Zustand
               headerColorActive:
                 label: Farbe Text Aktiv
                 type: select
@@ -310,6 +311,7 @@ columns:
                 extends: fields/colors
                 width: 1/4
                 translate: false
+                help: Textfarbe der Navigation beim Scrollen
               headerBackground:
                 label: Farbe Hintergrund
                 type: select
@@ -317,6 +319,7 @@ columns:
                 extends: fields/colors
                 width: 1/4
                 translate: false
+                help: Hintergrundfarbe des Headers im normalen Zustand
               headerBackgroundActive:
                 label: Farbe Hintergrund Aktiv
                 type: select
@@ -324,6 +327,23 @@ columns:
                 extends: fields/colors
                 width: 1/4
                 translate: false
+                help: Hintergrundfarbe des Headers beim Scrollen
+              headerColorCurrent:
+                label: Farbe Text aktuell
+                type: select
+                default: primary
+                extends: fields/colors
+                width: 1/4
+                translate: false
+                help: Textfarbe für aktive Navigationselemente
+              headerColorCurrentActive:
+                label: Farbe Text aktuell Aktiv
+                type: select
+                default: primary
+                extends: fields/colors
+                width: 1/4
+                translate: false
+                help: Textfarbe für aktive Navigationselemente beim Scrollen
           headerHamburger:
             type: object
             label: Hamburger
@@ -364,6 +384,7 @@ columns:
                 translate: false
                 default: primary
                 extends: fields/colors
+                help: Textfarbe der mobilen Navigation
               hamburgerMenuColor:
                 label: Farbe Menu
                 type: select
@@ -371,6 +392,7 @@ columns:
                 translate: false
                 default: primary
                 extends: fields/colors
+                help: Farbe des Hamburger-Icons im normalen Zustand
               hamburgerMenuColorActive:
                 label: Farbe Menu Aktiv
                 type: select
@@ -378,6 +400,7 @@ columns:
                 translate: false
                 default: primary
                 extends: fields/colors
+                help: Farbe des Hamburger-Icons beim Scrollen
               hamburgerOverlay:
                 label: Farbe Overlay
                 type: select
@@ -385,6 +408,23 @@ columns:
                 extends: fields/colors
                 width: 1/4
                 translate: false
+                help: Hintergrundfarbe des mobilen Menüs
+              hamburgerFontColorCurrent:
+                label: Farbe Text aktuell
+                type: select
+                default: primary
+                extends: fields/colors
+                width: 1/4
+                translate: false
+                help: Textfarbe für aktive mobile Navigationselemente
+              hamburgerFontColorCurrentActive:
+                label: Farbe Text aktuell Aktiv
+                type: select
+                default: primary
+                extends: fields/colors
+                width: 1/4
+                translate: false
+                help: Textfarbe für aktive mobile Navigationselemente beim Scrollen
 
   designButton:
     width: 1/1
