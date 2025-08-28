@@ -133,7 +133,7 @@ function getBlockArray(\Kirby\Cms\Block $block)
     ];
 
     // Cases that don't use base content first
-    $noBaseContentCases = ['columns', 'grid'];
+    $noBaseContentCases = ['columns', 'grid', 'title'];
 
     // Initialize base content for most cases
     if (!in_array($block->type(), $noBaseContentCases)) {
@@ -300,6 +300,30 @@ function getBlockArray(\Kirby\Cms\Block $block)
             $blockArray['content']['previousLabel'] = $block->previousLabel()->value();
             $blockArray['content']['nextLabel'] = $block->nextLabel()->value();
             $blockArray['content']['buttonlocal'] = $block->buttonlocal()->toBool(false);
+            break;
+
+        case 'title':
+            $blockArray['content']['text'] = (string)$block->text();
+            break;
+
+        case 'accordion':
+            foreach ($block->acc()->toStructure() as $key => $item) {
+                $blockArray['content']['acc'][$key] = $item->toArray();
+            }
+            break;
+
+        case 'quoteSlider':
+            foreach ($block->acc()->toStructure() as $key => $item) {
+                $blockArray['content']['acc'][$key] = $item->toArray();
+            }
+            break;
+
+        case 'line':
+            // All line properties are already captured by base content
+            break;
+
+        case 'divider':
+            // All divider properties are already captured by base content
             break;
 
         case 'contactForm':
