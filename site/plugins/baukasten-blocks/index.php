@@ -133,7 +133,7 @@ function getBlockArray(\Kirby\Cms\Block $block)
     ];
 
     // Cases that don't use base content first
-    $noBaseContentCases = ['columns', 'grid', 'title'];
+    $noBaseContentCases = ['columns', 'grid'];
 
     // Initialize base content for most cases
     if (!in_array($block->type(), $noBaseContentCases)) {
