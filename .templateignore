@@ -35,3 +35,4 @@ site/config/.license
 # AI files
 .kiro
 .cursor
+CRUSH.MD
