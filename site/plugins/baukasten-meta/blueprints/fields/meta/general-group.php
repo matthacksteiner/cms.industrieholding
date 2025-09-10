@@ -9,51 +9,35 @@ return function (Kirby $kirby) {
     $fields = [
         'meta_general_headline' => [
             'type'     => 'headline',
-            'label'    => t('fabianmichael.meta.general.headline'),
+            'label'    => t('baukastenMeta.meta.general.headline'),
             'numbered' => false,
         ],
         'meta_description' => [
             'type'        => 'text',
-            'label'       => t('fabianmichael.meta.description.label'),
+            'label'       => t('baukastenMeta.meta.description.label'),
             'placeholder' => '{{ page.meta.get("meta_description", true, true) }}',
-            'help'        => t('fabianmichael.meta.description.help'),
+            'help'        => t('baukastenMeta.meta.description.help'),
         ],
         'meta_title' => [
             'type'        => 'text',
-            'label'       => t('fabianmichael.meta.title.label'),
+            'label'       => t('baukastenMeta.meta.title.label'),
             'placeholder' => '{{ page.meta.panelTitlePlaceholder }}',
-            'help'        => t('fabianmichael.meta.title.help'),
-        ],
-        'meta_title_preview' => [
-            'type' => 'meta-title-preview',
-            'label' => t('fabianmichael.meta.title_preview.label'),
+            'help'        => t('baukastenMeta.meta.title.help'),
         ],
     ];
 
     // robots
 
-    if ($kirby->option('fabianmichael.meta.robots') !== false && $kirby->option('fabianmichael.meta.robots.canonical') !== false) {
+    if ($kirby->option('baukastenMeta.meta.robots') !== false && $kirby->option('baukastenMeta.meta.robots.canonical') !== false) {
         $fields['meta_canonical_url'] = [
             'type' => 'url',
-            'label' => t('fabianmichael.meta.canonical_url.label'),
+            'label' => t('baukastenMeta.meta.canonical_url.label'),
             'placeholder' => '{{ page.url }}',
-            'help' => t('fabianmichael.meta.canonical_url.help'),
+            'help' => t('baukastenMeta.meta.canonical_url.help'),
         ];
     }
 
-    // sitemap
-
-    if ($kirby->option('fabianmichael.meta.sitemap') !== false
-        && $kirby->option('fabianmichael.meta.sitemap.detailSettings') !== false) {
-        $fields['sitemap_priority'] = [
-            'extends' => 'fields/meta/sitemap-priority',
-            'width' => '1/2',
-        ];
-        $fields['sitemap_changefreq'] = [
-            'extends' => 'fields/meta/sitemap-changefreq',
-            'width' => '1/2',
-        ];
-    }
+    // sitemap fields removed for headless usage
 
 
     return [

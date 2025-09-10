@@ -1,6 +1,6 @@
 <?php
 
-use FabianMichael\Meta\PageMeta;
+use BaukastenMeta\Meta\PageMeta;
 
 return [
     'meta' => function (?string $languageCode = null) {

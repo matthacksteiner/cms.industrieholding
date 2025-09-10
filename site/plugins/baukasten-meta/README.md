@@ -16,7 +16,7 @@ browsers and beyond.
 - 🦊 Easy-to-understand language in the panel, providing a good middle ground between simplicity and extensive control options.
 - 🧙‍♂️ Most features can be enabled/disabled in config, panel UI only shows enabled features (thanks to dynamic blueprints)
 - 🪝 Hooks for altering the plugin's behavior
-- 🌍 All blueprints are fully translatable (*English, German, French and Swedish translations are included*)
+- 🌍 All blueprints are fully translatable (_English, German, French and Swedish translations are included_)
 
 **Future plans:**
 
@@ -43,43 +43,40 @@ description.
 
 ## Installation & Setup
 
-**Install using composer (recommended):**
+**Manual Installation:**
 
-```
-composer require fabianmichael/kirby-meta
-```
+1. Download or clone this repository
+2. Place the plugin folder in your Kirby project at `site/plugins/baukasten-meta/`
+3. That's it! The plugin will automatically load its dependencies.
 
-**Alternative download methods:**
-
-You can also download this repository as ZIP or add the whole repo as a submodule.
-To run from source, you need to install the dependencies : `composer install`.
+**No Composer required** - this plugin is completely self-contained and doesn't need any external dependencies.
 
 ### Available configuration options
 
-The options below have to be set in your `config.php`. Please note that every option has to be prefixed with the plugin namespace, e.g. `sitemap` => `fabianmichael.meta.sitemap`.
+The options below have to be set in your `config.php`. Please note that every option has to be prefixed with the plugin namespace, e.g. `sitemap` => `baukastenMeta.meta.sitemap`.
 
-| Key | Type | Default | Description |
-|:----|:-----|:--------|:------------|
-| `sitemap` | `bool` | `true` | When `true`, will generate an XML sitemap for search engines. The sitemap includes all listed pages by default. ⚠️ If you disable the `robots` setting, no robots.txt will be served to tell search engines where your sitemap is located. |
-| `sitemap.detailSettings` | `bool` | `false` | When `true`, the `<changefreq>` and `<priority>` tags are included in the sitemap and their corresponding fields are displayed in the panel. |
-| `sitemap.pages.exclude` | `array` | `[]` | An array of page IDs to exlude from the sitemap. Values are treated as regular expressions, so they can include wildcards like e.g. `about/.*`. The error page is always excluded. |
-| `sitemap.pages.includeUnlisted` | `array` | `[]` | An array of page IDs to include in the sitemap, even if their status is `unlisted`. Values are treated as regular expressions, so they can include wildcards like e.g. `about/.*`. |
-| `sitemap.templates.exclude` | `array` | `[]` | An array of template names to exlude from the sitemap. Values are treated as regular expressions, so they can include wildcards like e.g. `article-(internal|secret)` |
-| `sitemap.templates.includeUnlisted` | `array` | `[]` | An array of templates to include in the sitemap, even if their status is `unlisted`. Values are treated as regular expressions. |
-| `schema` | `bool` | `true` | Generates [Schema.org](https://schema.org/) markup as [JSON-LD](https://json-ld.org/).
-| `social` | `bool` | `true` | Generates [OpenGraph](https://ogp.me/) markup.
-| `twitter` | `bool` | `true` | Generates [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards) markup.  Only has an effect, if `social` is also enabled. Since `0.2.0-beta` (⚠️ deprecated).
-| `robots` | `bool` | `true` | Generates the `robots` metatag and serve [robots.txt](https://developers.google.com/search/docs/advanced/robots/intro) at `http(s)://yourdomain.com/robots.txt`.
-| `robots.canonical` | `bool` | `true` | Generates canonical url meta tag. Requires `robots` option to be `true`. |
-| `robots.index` | `bool` | `true` | Allows crawlers to index pages. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. If a page is excluded from the sitemap or unlisted, the robots meta tag will always contain `noindex`. |
-| `robots.follow` | `bool` | `true` | Allows crawlers to follow links on pages. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. |
-| `robots.archive` | `bool` | `true` | Allows crawlers to serve a cached version of pages. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. |
-| `robots.imageindex` | `bool` | `true` | Allows crawlers to include images to appear in search results. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. |
-| `robots.snippet` | `bool` | `true` | Allows crawlers to generate snippets from page content. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. |
-| `robots.translate` | `bool` | `true` | Allows crawlers offer automated translation of your content. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. |
-| `title.separators` | `array` | `["~" , "-" , "–" , "—" , ":" , "/", …]` | List of available separator options for the `<title>` tag. The separator can be selected in the panel and is placed between page title and site title. |
-| `theme.color` | `string\|null` | `null` | If not empty, will generate a corresponding meta tag used by some browsers for coloring the UI. |
-| `panel.view.filter` | Provides a filter function for hiding certain pages from the metadata debug view in the panel. See the Kirby docs on [`$pages->filter()`](https://getkirby.com/docs/reference/objects/cms/pages/filter) for details. |
+| Key                                 | Type                                                                                                                                                                                                                 | Default                                  | Description                                                                                                                                                                                                                                                             |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `sitemap`                           | `bool`                                                                                                                                                                                                               | `true`                                   | When `true`, will generate an XML sitemap for search engines. The sitemap includes all listed pages by default. ⚠️ If you disable the `robots` setting, no robots.txt will be served to tell search engines where your sitemap is located.                              |
+| `sitemap.detailSettings`            | `bool`                                                                                                                                                                                                               | `false`                                  | When `true`, the `<changefreq>` and `<priority>` tags are included in the sitemap and their corresponding fields are displayed in the panel.                                                                                                                            |
+| `sitemap.pages.exclude`             | `array`                                                                                                                                                                                                              | `[]`                                     | An array of page IDs to exlude from the sitemap. Values are treated as regular expressions, so they can include wildcards like e.g. `about/.*`. The error page is always excluded.                                                                                      |
+| `sitemap.pages.includeUnlisted`     | `array`                                                                                                                                                                                                              | `[]`                                     | An array of page IDs to include in the sitemap, even if their status is `unlisted`. Values are treated as regular expressions, so they can include wildcards like e.g. `about/.*`.                                                                                      |
+| `sitemap.templates.exclude`         | `array`                                                                                                                                                                                                              | `[]`                                     | An array of template names to exlude from the sitemap. Values are treated as regular expressions, so they can include wildcards like e.g. `article-(internal                                                                                                            | secret)` |
+| `sitemap.templates.includeUnlisted` | `array`                                                                                                                                                                                                              | `[]`                                     | An array of templates to include in the sitemap, even if their status is `unlisted`. Values are treated as regular expressions.                                                                                                                                         |
+| `schema`                            | `bool`                                                                                                                                                                                                               | `true`                                   | Generates [Schema.org](https://schema.org/) markup as [JSON-LD](https://json-ld.org/).                                                                                                                                                                                  |
+| `social`                            | `bool`                                                                                                                                                                                                               | `true`                                   | Generates [OpenGraph](https://ogp.me/) markup.                                                                                                                                                                                                                          |
+| `twitter`                           | `bool`                                                                                                                                                                                                               | `true`                                   | Generates [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards) markup. Only has an effect, if `social` is also enabled. Since `0.2.0-beta` (⚠️ deprecated).                                                          |
+| `robots`                            | `bool`                                                                                                                                                                                                               | `true`                                   | Generates the `robots` metatag and serve [robots.txt](https://developers.google.com/search/docs/advanced/robots/intro) at `http(s)://yourdomain.com/robots.txt`.                                                                                                        |
+| `robots.canonical`                  | `bool`                                                                                                                                                                                                               | `true`                                   | Generates canonical url meta tag. Requires `robots` option to be `true`.                                                                                                                                                                                                |
+| `robots.index`                      | `bool`                                                                                                                                                                                                               | `true`                                   | Allows crawlers to index pages. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect. If a page is excluded from the sitemap or unlisted, the robots meta tag will always contain `noindex`. |
+| `robots.follow`                     | `bool`                                                                                                                                                                                                               | `true`                                   | Allows crawlers to follow links on pages. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect.                                                                                              |
+| `robots.archive`                    | `bool`                                                                                                                                                                                                               | `true`                                   | Allows crawlers to serve a cached version of pages. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect.                                                                                    |
+| `robots.imageindex`                 | `bool`                                                                                                                                                                                                               | `true`                                   | Allows crawlers to include images to appear in search results. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect.                                                                         |
+| `robots.snippet`                    | `bool`                                                                                                                                                                                                               | `true`                                   | Allows crawlers to generate snippets from page content. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect.                                                                                |
+| `robots.translate`                  | `bool`                                                                                                                                                                                                               | `true`                                   | Allows crawlers offer automated translation of your content. Can be overriden in global or page-specific settings from the panel. Requires `robots` option to be `true` for having an effect.                                                                           |
+| `title.separators`                  | `array`                                                                                                                                                                                                              | `["~" , "-" , "–" , "—" , ":" , "/", …]` | List of available separator options for the `<title>` tag. The separator can be selected in the panel and is placed between page title and site title.                                                                                                                  |
+| `theme.color`                       | `string\|null`                                                                                                                                                                                                       | `null`                                   | If not empty, will generate a corresponding meta tag used by some browsers for coloring the UI.                                                                                                                                                                         |
+| `panel.view.filter`                 | Provides a filter function for hiding certain pages from the metadata debug view in the panel. See the Kirby docs on [`$pages->filter()`](https://getkirby.com/docs/reference/objects/cms/pages/filter) for details. |
 
 ### Blueprint setup
 
@@ -128,13 +125,13 @@ Now you are ready to add/edit metadata from the panel.
 
 Sometimes, you want special behavior for certain templates. The easiest way to achieve this is by creating a page model and implementing a `$page->metadata()` method, that returns an array some or even all of the following keys:
 
-| Key | Type | Description |
-|:----|:-----|:------------|
-| `meta_description` | `string` | Provide a default description that is used, when the user had not entered a dedicated description for this page. This could e.g. be a truncated version of the page's text content. |
-| `og_title_prefix` | `string` | Will be put in front of the page's OpenGraph title, e.g. `'ℹ️ '` or `'[Recipe ]` |
-| `og_image File` | `Kirby\Cms\File` | A `File` object, that sets the default OpenGraph image for this page. You can even generate custom images programatically and Wrap them in a `File` object, e.g. for the docs of your product (getkirby.com does this for the reference pages).
-| `@graph` | `array` | Things to add to the JSON-LD metadata in the page's head. If you need to reference the organization or person behind the website, use `url('/#owner')`. If you need to reference the website itself, use `url('/#website')`. |
-| `@social` | `array` | Extend the social meta tags generated by the plugin. |
+| Key                | Type             | Description                                                                                                                                                                                                                                     |
+| :----------------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `meta_description` | `string`         | Provide a default description that is used, when the user had not entered a dedicated description for this page. This could e.g. be a truncated version of the page's text content.                                                             |
+| `og_title_prefix`  | `string`         | Will be put in front of the page's OpenGraph title, e.g. `'ℹ️ '` or `'[Recipe ]`                                                                                                                                                                |
+| `og_image File`    | `Kirby\Cms\File` | A `File` object, that sets the default OpenGraph image for this page. You can even generate custom images programatically and Wrap them in a `File` object, e.g. for the docs of your product (getkirby.com does this for the reference pages). |
+| `@graph`           | `array`          | Things to add to the JSON-LD metadata in the page's head. If you need to reference the organization or person behind the website, use `url('/#owner')`. If you need to reference the website itself, use `url('/#website')`.                    |
+| `@social`          | `array`          | Extend the social meta tags generated by the plugin.                                                                                                                                                                                            |
 
 ### Using hooks
 
@@ -229,7 +226,6 @@ return [
 ];
 ```
 
-
 #### `'meta.sitemap…` hooks
 
 These hooks allow you to completely alter the way how the sitemap is being generated. These functions are meant to manipulate the provided DOM document and elements directly and should not return anything.
@@ -294,12 +290,15 @@ return [
 ```
 
 ### Manipulating indexed pages
+
 A few helpers are available for manipulating pages:
 
 ### Page Method
+
 If you'd like to know if a page is indexed in the sitemap, you can use `$page->isIndexible()` (returns a `bool`).
 
 ### Site Method
+
 To get all indexed pages according to your settings, you can use : `$site->indexedPages()` (returns a `Kirby\Cms\Collection` of pages).
 
 ## Credits

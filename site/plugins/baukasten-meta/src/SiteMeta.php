@@ -1,6 +1,6 @@
 <?php
 
-namespace FabianMichael\Meta;
+namespace BaukastenMeta\Meta;
 
 class SiteMeta
 {
@@ -21,7 +21,7 @@ class SiteMeta
         return site()
             ->content()
             ->get("robots_{$name}")
-            ->or(option("fabianmichael.meta.robots.{$name}"))
+            ->or(option("baukastenMeta.meta.robots.{$name}"))
             ->toBool();
     }
 

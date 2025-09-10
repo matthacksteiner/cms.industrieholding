@@ -1,6 +1,6 @@
 <?php
 
-use FabianMichael\Meta\Helper;
+use BaukastenMeta\Meta\Helper;
 use Kirby\Cms\App as Kirby;
 
 return function (Kirby $kirby): array {
@@ -11,11 +11,11 @@ return function (Kirby $kirby): array {
             ->site()
             ->content()
             ->get($name)
-            ->or($kirby->option('fabianmichael.meta.' . str_replace('_', '.', $name)))
+            ->or($kirby->option('baukastenMeta.meta.' . str_replace('_', '.', $name)))
             ->toBool();
 
-        $configDefaultLabel = tt('fabianmichael.meta.global_default_value.label', [
-            'state' => ($globalValue === true ? t('fabianmichael.meta.state.on') : t('fabianmichael.meta.state.off')),
+        $configDefaultLabel = tt('baukastenMeta.meta.global_default_value.label', [
+            'state' => ($globalValue === true ? t('baukastenMeta.meta.state.on') : t('baukastenMeta.meta.state.off')),
         ]);
 
         if (in_array($toggleType, ['multi-toggle', 'toggles'])) {
@@ -27,11 +27,11 @@ return function (Kirby $kirby): array {
                     ],
                     [
                         'value' => '1',
-                        'text' => t('fabianmichael.meta.state.on'),
+                        'text' => t('baukastenMeta.meta.state.on'),
                     ],
                     [
                         'value' => '0',
-                        'text' => t('fabianmichael.meta.state.off'),
+                        'text' => t('baukastenMeta.meta.state.off'),
                     ],
                 ],
                 'reset' => false,
@@ -46,11 +46,11 @@ return function (Kirby $kirby): array {
                 'options' => [
                     [
                         'value' => '1',
-                        'text' => t('fabianmichael.meta.state.on'),
+                        'text' => t('baukastenMeta.meta.state.on'),
                     ],
                     [
                         'value' => '0',
-                        'text' => t('fabianmichael.meta.state.off'),
+                        'text' => t('baukastenMeta.meta.state.off'),
                     ],
                 ],
                 'type' => $toggleType,
@@ -65,29 +65,29 @@ return function (Kirby $kirby): array {
         'fields' => [
             'robots_headline' => [
                 'type' =>  'headline',
-                'label' => t('fabianmichael.meta.robots.headline'),
-                'help' =>  t('fabianmichael.meta.robots.help'),
+                'label' => t('baukastenMeta.meta.robots.headline'),
+                'help' =>  t('baukastenMeta.meta.robots.help'),
                 'numbered' => false,
             ],
             'robots_index' => array_merge([
-                'label' => t('fabianmichael.meta.robots_index.label'),
-                'help' => t('fabianmichael.meta.robots_index.help'),
+                'label' => t('baukastenMeta.meta.robots_index.label'),
+                'help' => t('baukastenMeta.meta.robots_index.help'),
             ], $getOptions('robots_index')),
             'robots_follow' => array_merge([
-                'label' => t('fabianmichael.meta.robots_follow.label'),
-                'help' => t('fabianmichael.meta.robots_follow.help'),
+                'label' => t('baukastenMeta.meta.robots_follow.label'),
+                'help' => t('baukastenMeta.meta.robots_follow.help'),
             ], $getOptions('robots_follow')),
             'robots_archive' => array_merge([
-                'label' => t('fabianmichael.meta.robots_archive.label'),
-                'help' => t('fabianmichael.meta.robots_archive.help'),
+                'label' => t('baukastenMeta.meta.robots_archive.label'),
+                'help' => t('baukastenMeta.meta.robots_archive.help'),
             ], $getOptions('robots_archive')),
             'robots_imageindex' => array_merge([
-                'label' => t('fabianmichael.meta.robots_imageindex.label'),
-                'help' => t('fabianmichael.meta.robots_imageindex.help'),
+                'label' => t('baukastenMeta.meta.robots_imageindex.label'),
+                'help' => t('baukastenMeta.meta.robots_imageindex.help'),
             ], $getOptions('robots_imageindex')),
             'robots_snippet' => array_merge([
-                'label' => t('fabianmichael.meta.robots_snippet.label'),
-                'help' => t('fabianmichael.meta.robots_snippet.help'),
+                'label' => t('baukastenMeta.meta.robots_snippet.label'),
+                'help' => t('baukastenMeta.meta.robots_snippet.help'),
             ], $getOptions('robots_snippet')),
         ],
     ];

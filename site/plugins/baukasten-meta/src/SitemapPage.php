@@ -1,10 +1,7 @@
 <?php
 
-namespace FabianMichael\Meta;
+namespace BaukastenMeta\Meta;
 
 use Kirby\Cms\Page;
 
-class SitemapPage extends Page
-{
-
-}
+class SitemapPage extends Page {}

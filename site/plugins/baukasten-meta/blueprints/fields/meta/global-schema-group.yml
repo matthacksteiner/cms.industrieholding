@@ -2,27 +2,27 @@ type: group
 fields:
   meta_schema_headline:
     type: headline
-    label: fabianmichael.meta.schema.headline
+    label: baukastenMeta.meta.schema.headline
     numbered: false
-    help: fabianmichael.meta.schema.help
+    help: baukastenMeta.meta.schema.help
   meta_website_owner:
     type: select
-    label: fabianmichael.meta.schema.website_owner.label
+    label: baukastenMeta.meta.schema.website_owner.label
     options:
       person: Person
       org: Organization
     translate: false
-    help: fabianmichael.meta.schema.website_owner.help
+    help: baukastenMeta.meta.schema.website_owner.help
   meta_org_name:
     type: text
-    label: fabianmichael.meta.schema.org_name.label
+    label: baukastenMeta.meta.schema.org_name.label
     required: true
     translate: false
     when:
       meta_website_owner: org
   meta_org_logo:
     type: files
-    label: fabianmichael.meta.schema.org_logo.label
+    label: baukastenMeta.meta.schema.org_logo.label
     layout: cards
     size: small
     multiple: false
@@ -34,19 +34,19 @@ fields:
       meta_website_owner: org
   meta_person:
     type: users
-    label: fabianmichael.meta.schema.meta_person.label
+    label: baukastenMeta.meta.schema.meta_person.label
     multiple: false
     required: true
-    empty: fabianmichael.meta.schema.meta_person.empty
-    help: fabianmichael.meta.schema.meta_person.help
+    empty: baukastenMeta.meta.schema.meta_person.empty
+    help: baukastenMeta.meta.schema.meta_person.help
     translate: false
     when:
       meta_website_owner: person
   meta_privacy_notice:
     type: info
     theme: notice
-    label: fabianmichael.meta.schema.person_privacy_notice.label
-    text: fabianmichael.meta.schema.person_privacy_notice.text
+    label: baukastenMeta.meta.schema.person_privacy_notice.label
+    text: baukastenMeta.meta.schema.person_privacy_notice.text
     when:
       meta_website_owner: person
   # meta_page_type:

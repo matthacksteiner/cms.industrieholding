@@ -1,6 +1,6 @@
 <?php
 
-namespace FabianMichael\Meta;
+namespace BaukastenMeta\Meta;
 
 use DOMDocument;
 use DOMElement;
@@ -14,7 +14,8 @@ class Sitemap
     protected bool $isMultilang;
     protected Languages $languages;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->kirby = kirby();
         $this->isMultilang = $this->kirby->multilang();
         $this->languages   = $this->kirby->languages();
@@ -59,8 +60,8 @@ class Sitemap
     protected function urlsForPage(
         Page $page,
         DOMDocument $doc,
-        DOMElement $root): void
-        {
+        DOMElement $root
+    ): void {
         $meta = $page->meta();
 
         if (static::isPageIndexible($page) === false) {
@@ -72,7 +73,7 @@ class Sitemap
         $url = $doc->createElement('url');
         $url->appendChild($doc->createElement('loc', $page->url()));
 
-        if ($this->kirby->option('fabianmichael.meta.sitemap.detailSettings') !== false) {
+        if ($this->kirby->option('baukastenMeta.meta.sitemap.detailSettings') !== false) {
             $priority = $meta->priority();
 
             if ($priority !== null) { // could be 0.0, so has to be checked against NULL
@@ -117,16 +118,16 @@ class Sitemap
         // pages have to pass a set of for being indexible. If any test
         // fails, the page is excluded from index
 
-        $templatesExclude = option('fabianmichael.meta.sitemap.templates.exclude', []);
+        $templatesExclude = option('baukastenMeta.meta.sitemap.templates.exclude', []);
         $templatesExcludeRegex = '!^(?:' . implode('|', $templatesExclude) . ')$!i';
 
-        $templatesIncludeUnlisted = option('fabianmichael.meta.sitemap.templates.includeUnlisted', []);
+        $templatesIncludeUnlisted = option('baukastenMeta.meta.sitemap.templates.includeUnlisted', []);
         $templatesIncludeUnlistedRegex = '!^(?:' . implode('|', $templatesIncludeUnlisted) . ')$!i';
 
-        $pagesExclude = option('fabianmichael.meta.sitemap.pages.exclude', []);
+        $pagesExclude = option('baukastenMeta.meta.sitemap.pages.exclude', []);
         $pagesExcludeRegex = '!^(?:' . implode('|', $pagesExclude) . ')$!i';
 
-        $pagesIncludeUnlisted = option('fabianmichael.meta.sitemap.pages.includeUnlisted', []);
+        $pagesIncludeUnlisted = option('baukastenMeta.meta.sitemap.pages.includeUnlisted', []);
         $pagesIncludeUnlistedRegex = '!^(?:' . implode('|', $pagesIncludeUnlisted) . ')$!i';
 
         if ($page->isErrorPage()) {
@@ -136,8 +137,10 @@ class Sitemap
 
 
         if (! $page->isHomePage() && $page->status() === 'unlisted') {
-            if (preg_match($templatesIncludeUnlistedRegex, $page->intendedTemplate()->name()) !== 1
-                && preg_match($pagesIncludeUnlistedRegex, $page->id()) !== 1) {
+            if (
+                preg_match($templatesIncludeUnlistedRegex, $page->intendedTemplate()->name()) !== 1
+                && preg_match($pagesIncludeUnlistedRegex, $page->id()) !== 1
+            ) {
                 // unlisted pages are only indexible, if exceptions are
                 // defined for them based on page id or template
                 return false;

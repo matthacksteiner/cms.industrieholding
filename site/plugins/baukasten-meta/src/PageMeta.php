@@ -1,6 +1,6 @@
 <?php
 
-namespace FabianMichael\Meta;
+namespace BaukastenMeta\Meta;
 
 use Kirby\Cms\App as Kirby;
 use Kirby\Cms\Field;
@@ -106,7 +106,7 @@ class PageMeta
 
         // From config as fallback ...
         if ($configFallback === true) {
-            $value = option('fabianmichael.meta.' . str_replace('_', '.', $key));
+            $value = option('baukastenMeta.meta.' . str_replace('_', '.', $key));
 
             if ($value !== null) {
                 return new Field($this->page, $key, $value);
@@ -376,7 +376,7 @@ class PageMeta
         }
 
         // Twitter
-        if (option('fabianmichael.meta.twitter')) {
+        if (option('baukastenMeta.meta.twitter')) {
             $social[] = [
                 'name' => 'twitter:card',
                 'content' => 'summary_large_image',
@@ -477,7 +477,7 @@ class PageMeta
     {
         if ($this->page->isHomePage()) {
             return $this->page->content($this->languageCode)->get('meta_title')
-            ->or($this->page->site()->title())->toString();
+                ->or($this->page->site()->title())->toString();
         }
 
         return $this->page->title();
@@ -490,12 +490,12 @@ class PageMeta
         return [
             [
                 'value' => $isIndexible
-                    ? t('fabianmichael.meta.search_engines.visibility.visible')
-                    : t('fabianmichael.meta.search_engines.visibility.hidden'),
-                'label' => 'fabianmichael.meta.search_engines.visibility.label',
+                    ? t('baukastenMeta.meta.search_engines.visibility.visible')
+                    : t('baukastenMeta.meta.search_engines.visibility.hidden'),
+                'label' => 'baukastenMeta.meta.search_engines.visibility.label',
                 'info'  => $isIndexible
-                    ? t('fabianmichael.meta.search_engines.visibility.yes')
-                    : t('fabianmichael.meta.search_engines.visibility.no'),
+                    ? t('baukastenMeta.meta.search_engines.visibility.yes')
+                    : t('baukastenMeta.meta.search_engines.visibility.no'),
                 'theme' => $isIndexible ? 'positive' : 'negative',
             ],
         ];

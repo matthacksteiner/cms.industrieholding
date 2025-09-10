@@ -9,44 +9,26 @@ return function (Kirby $kirby) {
     $fields = [
         'meta_general_headline' => [
             'type' => 'headline',
-            'label' => t('fabianmichael.meta.global_general.headline'),
+            'label' => t('baukastenMeta.meta.global_general.headline'),
             'numbered' => false,
         ],
         'meta_description' => [
             'type' => 'text',
-            'label' => t('fabianmichael.meta.description.label'),
-            'help' => t('fabianmichael.meta.global_description.help'),
+            'label' => t('baukastenMeta.meta.description.label'),
+            'help' => t('baukastenMeta.meta.global_description.help'),
         ],
         'meta_title_separator' => [
             'type' => 'select',
-            'label' => t('fabianmichael.meta.title_separator.label'),
+            'label' => t('baukastenMeta.meta.title_separator.label'),
             'default' => '',
             'placeholder' => '|',
-            'options' => $kirby->option('fabianmichael.meta.title.separators'),
-            'width' => '1/3',
-            'help' => t('fabianmichael.meta.title_separator.help'),
-        ],
-        'meta_title_preview' => [
-            'type' => 'meta-title-preview',
-            'label' => 'Preview',
-            'width' => '2/3',
+            'options' => $kirby->option('baukastenMeta.meta.title.separators'),
+            'width' => '1/1',
+            'help' => t('baukastenMeta.meta.title_separator.help'),
         ],
     ];
 
-    // sitemap
-
-    if ($kirby->option('fabianmichael.meta.sitemap') !== false
-        && $kirby->option('fabianmichael.meta.sitemap.detailSettings') !== false) {
-        $fields['sitemap_priority'] = [
-            'extends' => 'fields/meta/sitemap-priority',
-            'help' => t('fabianmichael.meta.sitemap.global_priority.help'),
-            'width' => '1/2',
-        ];
-        $fields['sitemap_changefreq'] = [
-            'extends' => 'fields/meta/global-sitemap-changefreq',
-            'width' => '1/2',
-        ];
-    }
+    // sitemap fields removed for headless usage
 
 
     return [

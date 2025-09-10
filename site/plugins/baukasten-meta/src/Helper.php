@@ -1,6 +1,6 @@
 <?php
 
-namespace FabianMichael\Meta;
+namespace BaukastenMeta\Meta;
 
 use Kirby\Cms\App;
 
@@ -18,7 +18,7 @@ class Helper
             return $type = 'toggles';
         }
 
-        if (App::plugin('fabianmichael/kirby-multi-toggle-field')) {
+        if (App::plugin('baukasten-meta/kirby-multi-toggle-field')) {
             return $type = 'multi-toggle';
         }
 
@@ -28,7 +28,7 @@ class Helper
     public static function themeColor(): ?string
     {
         return kirby()->apply('meta.theme.color', [
-            'color' => option('fabianmichael.meta.theme.color'),
+            'color' => option('baukastenMeta.meta.theme.color'),
         ], 'color');
     }
 }
