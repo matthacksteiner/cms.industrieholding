@@ -25,6 +25,17 @@ return [
 		'quality' => 99,
 		'format'  => 'webp',
 	],
+	'routes' => [
+		[
+			'pattern' => 'sitemap.xml',
+			'action' => function () {
+				$sitemap = BaukastenMeta\Meta\Sitemap::factory();
+				$xml = $sitemap->generate();
+
+				return new Kirby\Cms\Response($xml, 'application/xml');
+			}
+		]
+	],
 	'ready' => function () {
 		return [
 			'johannschopplich.deploy-trigger' => [
