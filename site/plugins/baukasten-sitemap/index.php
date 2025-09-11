@@ -52,10 +52,11 @@ Kirby::plugin('baukasten/sitemap', [
                             $pageUri = str_replace($cmsUrl, '', $originalUrl);
                             $pageUri = ltrim($pageUri, '/');
 
-                            // Remove language prefix from URI for page lookup
+                            // Remove language prefix from URI for page lookup (only if it's a proper prefix)
                             foreach ($allLanguages as $lang) {
-                                if (strpos($pageUri, $lang->code() . '/') === 0) {
-                                    $pageUri = substr($pageUri, strlen($lang->code()) + 1);
+                                $langPrefix = $lang->code() . '/';
+                                if (strpos($pageUri, $langPrefix) === 0) {
+                                    $pageUri = substr($pageUri, strlen($langPrefix));
                                     break;
                                 }
                             }
@@ -99,10 +100,11 @@ Kirby::plugin('baukasten/sitemap', [
                             $pageUri = str_replace($cmsUrl, '', $originalHref);
                             $pageUri = ltrim($pageUri, '/');
 
-                            // Remove language prefix from URI for page lookup
+                            // Remove language prefix from URI for page lookup (only if it's a proper prefix)
                             foreach ($allLanguages as $lang) {
-                                if (strpos($pageUri, $lang->code() . '/') === 0) {
-                                    $pageUri = substr($pageUri, strlen($lang->code()) + 1);
+                                $langPrefix = $lang->code() . '/';
+                                if (strpos($pageUri, $langPrefix) === 0) {
+                                    $pageUri = substr($pageUri, strlen($langPrefix));
                                     break;
                                 }
                             }
