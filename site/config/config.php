@@ -7,7 +7,8 @@
 */
 
 return [
-	'debug' => true,
+	// 'debug' => true,
+	'panel.dev' => true, // Enable panel development mode for plugin changes
 	'auth' => [
 		'methods' => ['password', 'password-reset']
 	],
