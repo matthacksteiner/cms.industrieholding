@@ -1265,6 +1265,40 @@
             "time": "2022-09-24T15:57:16+00:00"
         },
         {
+            "name": "medienbaecker/kirby-alter",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/medienbaecker/kirby-alter.git",
+                "reference": "a963ea92d11f1957726fd3a42a4dd9c7142c0a65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/medienbaecker/kirby-alter/zipball/a963ea92d11f1957726fd3a42a4dd9c7142c0a65",
+                "reference": "a963ea92d11f1957726fd3a42a4dd9c7142c0a65",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1"
+            },
+            "type": "kirby-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Günther",
+                    "email": "mail@medienbaecker.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/medienbaecker/kirby-alter/issues",
+                "source": "https://github.com/medienbaecker/kirby-alter/tree/1.7.0"
+            },
+            "time": "2025-09-03T19:13:11+00:00"
+        },
+        {
             "name": "michelf/php-smartypants",
             "version": "1.8.1",
             "source": {
