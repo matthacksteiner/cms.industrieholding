@@ -2,7 +2,7 @@
 
 use Kirby\Cms\App as Kirby;
 use Kirby\Cms\Page;
-use FabianMichael\Meta\PageMeta;
+use BaukastenMeta\Meta\PageMeta;
 
 Kirby::plugin('baukasten/sitemap', [
     'hooks' => [
