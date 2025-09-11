@@ -11,7 +11,8 @@
 		"sylvainjule/backups": "^1.0",
 		"johannschopplich/kirby-deploy-trigger": "^1.0",
 		"tobimori/kirby-thumbhash": "^1.1",
-		"bnomei/kirby3-dotenv": "^5.0"
+		"bnomei/kirby3-dotenv": "^5.0",
+		"medienbaecker/kirby-alter": "^1.7"
 	},
 	"config": {
 		"allow-plugins": {
