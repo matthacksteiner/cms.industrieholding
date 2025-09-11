@@ -41,9 +41,10 @@ Kirby::plugin('baukasten/sitemap', [
                         // Replace CMS URL with frontend URL
                         $transformedUrl = str_replace($cmsUrl, $frontendUrl, $originalUrl);
 
-                        // Handle language prefix removal
+                        // Handle language prefix removal (only remove language prefix from URL path, not from content)
                         if (count($allLanguages) === 1 || (option('prefixDefaultLocale') === false)) {
-                            $transformedUrl = str_replace('/' . $defaultLanguage->code(), '', $transformedUrl);
+                            $langPrefix = '/' . $defaultLanguage->code() . '/';
+                            $transformedUrl = str_replace($langPrefix, '/', $transformedUrl);
                         }
 
                         // Handle flat URL structure when section toggle is disabled
@@ -65,6 +66,7 @@ Kirby::plugin('baukasten/sitemap', [
                             $page = $kirby->page($pageUri);
                             if ($page) {
                                 $flatUri = generatePageUri($page, true);
+
 
                                 // Reconstruct the full URL with language prefix if needed
                                 $languagePrefix = '';
@@ -90,9 +92,10 @@ Kirby::plugin('baukasten/sitemap', [
                         $originalHref = $xhtml->getAttribute('href');
                         $transformedHref = str_replace($cmsUrl, $frontendUrl, $originalHref);
 
-                        // Handle language prefix removal
+                        // Handle language prefix removal (only remove language prefix from URL path, not from content)
                         if (count($allLanguages) === 1 || (option('prefixDefaultLocale') === false)) {
-                            $transformedHref = str_replace('/' . $defaultLanguage->code(), '', $transformedHref);
+                            $langPrefix = '/' . $defaultLanguage->code() . '/';
+                            $transformedHref = str_replace($langPrefix, '/', $transformedHref);
                         }
 
                         // Handle flat URL structure when section toggle is disabled
@@ -113,6 +116,7 @@ Kirby::plugin('baukasten/sitemap', [
                             $page = $kirby->page($pageUri);
                             if ($page) {
                                 $flatUri = generatePageUri($page, true);
+
 
                                 // Reconstruct the full URL with language prefix if needed
                                 $languagePrefix = '';
