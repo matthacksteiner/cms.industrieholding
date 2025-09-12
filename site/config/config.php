@@ -49,7 +49,7 @@ return [
 					$frontendUrl = rtrim(site()->frontendUrl()->toString(), '/');
 
 					// Special case for home page - link to root
-					if ($page->template()->name() === 'home') {
+					if ($page->isHomePage() || $page->template()->name() === 'home' || $page->uri() === 'home') {
 						$pageUrl = $frontendUrl . '/';
 					} else {
 						$pageUri = $page->uri();
@@ -72,7 +72,7 @@ return [
 					$frontendUrl = rtrim(site()->frontendUrl()->toString(), '/');
 
 					// Special case for home page - link to preview root
-					if ($page->template()->name() === 'home') {
+					if ($page->isHomePage() || $page->template()->name() === 'home' || $page->uri() === 'home') {
 						$previewUrl = $frontendUrl . '/preview/';
 					} else {
 						$pageUri = $page->uri();
