@@ -48,10 +48,50 @@ class PageMeta
 
     public function canonicalUrl(): string
     {
-        return $this->meta_canonical_url()
-            ->or($this->metadata('canonical_url'))
-            ->or($this->page->url())
-            ->toString();
+        $canonicalUrl = $this->meta_canonical_url()
+            ->or($this->metadata('canonical_url'));
+
+        if ($canonicalUrl->isNotEmpty()) {
+            return $canonicalUrl->toString();
+        }
+
+        // For headless setup, generate frontend URL with trailing slash
+        $site = $this->page->site();
+        $frontendUrl = $site->frontendUrl();
+
+        if ($frontendUrl) {
+            $frontendUrl = rtrim($frontendUrl, '/');
+            $pageUrl = $this->page->url();
+            $cmsUrl = $this->kirby->url('index');
+
+            // Transform CMS URL to frontend URL
+            $transformedUrl = str_replace($cmsUrl, $frontendUrl, $pageUrl);
+
+            // Handle language prefix removal for default language if needed
+            $allLanguages = $this->kirby->languages();
+            $defaultLanguage = $this->kirby->defaultLanguage();
+
+            if (count($allLanguages) === 1 || (option('prefixDefaultLocale') === false)) {
+                $langPrefix = '/' . $defaultLanguage->code() . '/';
+                $transformedUrl = str_replace($langPrefix, '/', $transformedUrl);
+            }
+
+            // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+            // (except for home page which should remain as just '/')
+            if ($transformedUrl !== $frontendUrl && substr($transformedUrl, -1) !== '/') {
+                $transformedUrl .= '/';
+            }
+
+            return $transformedUrl;
+        }
+
+        // Fallback to page URL with trailing slash
+        $url = $this->page->url();
+        if (substr($url, -1) !== '/') {
+            $url .= '/';
+        }
+
+        return $url;
     }
 
     public function changefreq(): ?string

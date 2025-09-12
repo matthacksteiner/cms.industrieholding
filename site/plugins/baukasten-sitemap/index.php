@@ -47,11 +47,10 @@ Kirby::plugin('baukasten/sitemap', [
                             $transformedUrl = str_replace($langPrefix, '/', $transformedUrl);
                         }
 
-                        // Ensure trailing slash for Astro trailingSlash: 'always' setting (for non-flat URLs)
-                        if (!$sectionToggleEnabled || $transformedUrl === str_replace($cmsUrl, $frontendUrl, $originalUrl)) {
-                            if ($transformedUrl !== $frontendUrl && $transformedUrl !== $frontendUrl . '/' && !str_ends_with($transformedUrl, '/')) {
-                                $transformedUrl .= '/';
-                            }
+                        // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                        // (except for home page which should remain as just '/')
+                        if ($transformedUrl !== $frontendUrl && substr($transformedUrl, -1) !== '/') {
+                            $transformedUrl .= '/';
                         }
 
                         // Handle flat URL structure when section toggle is disabled
@@ -87,10 +86,9 @@ Kirby::plugin('baukasten/sitemap', [
                                 }
 
                                 $transformedUrl = $frontendUrl . $languagePrefix . '/' . $flatUri;
-                                // Ensure trailing slash for Astro trailingSlash: 'always' setting
-                                // Only skip trailing slash for root URLs
-                                if ($transformedUrl !== $frontendUrl && $transformedUrl !== $frontendUrl . '/') {
-                                    $transformedUrl = rtrim($transformedUrl, '/') . '/';
+                                // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                                if (substr($transformedUrl, -1) !== '/') {
+                                    $transformedUrl .= '/';
                                 }
                             }
                         }
@@ -109,11 +107,10 @@ Kirby::plugin('baukasten/sitemap', [
                             $transformedHref = str_replace($langPrefix, '/', $transformedHref);
                         }
 
-                        // Ensure trailing slash for Astro trailingSlash: 'always' setting (for non-flat URLs)
-                        if (!$sectionToggleEnabled || $transformedHref === str_replace($cmsUrl, $frontendUrl, $originalHref)) {
-                            if ($transformedHref !== $frontendUrl && $transformedHref !== $frontendUrl . '/' && !str_ends_with($transformedHref, '/')) {
-                                $transformedHref .= '/';
-                            }
+                        // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                        // (except for home page which should remain as just '/')
+                        if ($transformedHref !== $frontendUrl && substr($transformedHref, -1) !== '/') {
+                            $transformedHref .= '/';
                         }
 
                         // Handle flat URL structure when section toggle is disabled
@@ -148,10 +145,9 @@ Kirby::plugin('baukasten/sitemap', [
                                 }
 
                                 $transformedHref = $frontendUrl . $languagePrefix . '/' . $flatUri;
-                                // Ensure trailing slash for Astro trailingSlash: 'always' setting
-                                // Only skip trailing slash for root URLs
-                                if ($transformedHref !== $frontendUrl && $transformedHref !== $frontendUrl . '/') {
-                                    $transformedHref = rtrim($transformedHref, '/') . '/';
+                                // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                                if (substr($transformedHref, -1) !== '/') {
+                                    $transformedHref .= '/';
                                 }
                             }
                         }
