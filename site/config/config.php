@@ -23,7 +23,7 @@ return [
 		'viewButtons' => [
 			'site' => [
 				'frontend-open' => function () {
-					$frontendUrl = rtrim(site()->frontendUrl()->toString(), '/');
+					$frontendUrl = rtrim(site()->frontendUrl()->toString(), '/') . '/';
 
 					return [
 						'icon' => 'window',
@@ -50,12 +50,14 @@ return [
 
 					// Special case for home page - link to root
 					if ($page->template()->name() === 'home') {
-						$pageUrl = $frontendUrl;
+						$pageUrl = $frontendUrl . '/';
 					} else {
 						$pageUri = $page->uri();
 						$pageUrl = $frontendUrl;
 						if (!empty($pageUri)) {
-							$pageUrl .= '/' . $pageUri;
+							$pageUrl .= '/' . $pageUri . '/';
+						} else {
+							$pageUrl .= '/';
 						}
 					}
 
@@ -76,7 +78,9 @@ return [
 						$pageUri = $page->uri();
 						$previewUrl = $frontendUrl . '/preview';
 						if (!empty($pageUri)) {
-							$previewUrl .= '/' . $pageUri;
+							$previewUrl .= '/' . $pageUri . '/';
+						} else {
+							$previewUrl .= '/';
 						}
 					}
 
