@@ -2,7 +2,7 @@
 
 use Kirby\Cms\App as Kirby;
 use Kirby\Cms\Page;
-use FabianMichael\Meta\PageMeta;
+use BaukastenMeta\Meta\PageMeta;
 
 Kirby::plugin('baukasten/sitemap', [
     'hooks' => [
@@ -41,9 +41,16 @@ Kirby::plugin('baukasten/sitemap', [
                         // Replace CMS URL with frontend URL
                         $transformedUrl = str_replace($cmsUrl, $frontendUrl, $originalUrl);
 
-                        // Handle language prefix removal
+                        // Handle language prefix removal (only remove language prefix from URL path, not from content)
                         if (count($allLanguages) === 1 || (option('prefixDefaultLocale') === false)) {
-                            $transformedUrl = str_replace('/' . $defaultLanguage->code(), '', $transformedUrl);
+                            $langPrefix = '/' . $defaultLanguage->code() . '/';
+                            $transformedUrl = str_replace($langPrefix, '/', $transformedUrl);
+                        }
+
+                        // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                        // (except for home page which should remain as just '/')
+                        if ($transformedUrl !== $frontendUrl && substr($transformedUrl, -1) !== '/') {
+                            $transformedUrl .= '/';
                         }
 
                         // Handle flat URL structure when section toggle is disabled
@@ -52,10 +59,11 @@ Kirby::plugin('baukasten/sitemap', [
                             $pageUri = str_replace($cmsUrl, '', $originalUrl);
                             $pageUri = ltrim($pageUri, '/');
 
-                            // Remove language prefix from URI for page lookup
+                            // Remove language prefix from URI for page lookup (only if it's a proper prefix)
                             foreach ($allLanguages as $lang) {
-                                if (strpos($pageUri, $lang->code() . '/') === 0) {
-                                    $pageUri = substr($pageUri, strlen($lang->code()) + 1);
+                                $langPrefix = $lang->code() . '/';
+                                if (strpos($pageUri, $langPrefix) === 0) {
+                                    $pageUri = substr($pageUri, strlen($langPrefix));
                                     break;
                                 }
                             }
@@ -77,7 +85,10 @@ Kirby::plugin('baukasten/sitemap', [
                                 }
 
                                 $transformedUrl = $frontendUrl . $languagePrefix . '/' . $flatUri;
-                                $transformedUrl = rtrim($transformedUrl, '/');
+                                // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                                if (substr($transformedUrl, -1) !== '/') {
+                                    $transformedUrl .= '/';
+                                }
                             }
                         }
 
@@ -89,9 +100,16 @@ Kirby::plugin('baukasten/sitemap', [
                         $originalHref = $xhtml->getAttribute('href');
                         $transformedHref = str_replace($cmsUrl, $frontendUrl, $originalHref);
 
-                        // Handle language prefix removal
+                        // Handle language prefix removal (only remove language prefix from URL path, not from content)
                         if (count($allLanguages) === 1 || (option('prefixDefaultLocale') === false)) {
-                            $transformedHref = str_replace('/' . $defaultLanguage->code(), '', $transformedHref);
+                            $langPrefix = '/' . $defaultLanguage->code() . '/';
+                            $transformedHref = str_replace($langPrefix, '/', $transformedHref);
+                        }
+
+                        // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                        // (except for home page which should remain as just '/')
+                        if ($transformedHref !== $frontendUrl && substr($transformedHref, -1) !== '/') {
+                            $transformedHref .= '/';
                         }
 
                         // Handle flat URL structure when section toggle is disabled
@@ -99,10 +117,11 @@ Kirby::plugin('baukasten/sitemap', [
                             $pageUri = str_replace($cmsUrl, '', $originalHref);
                             $pageUri = ltrim($pageUri, '/');
 
-                            // Remove language prefix from URI for page lookup
+                            // Remove language prefix from URI for page lookup (only if it's a proper prefix)
                             foreach ($allLanguages as $lang) {
-                                if (strpos($pageUri, $lang->code() . '/') === 0) {
-                                    $pageUri = substr($pageUri, strlen($lang->code()) + 1);
+                                $langPrefix = $lang->code() . '/';
+                                if (strpos($pageUri, $langPrefix) === 0) {
+                                    $pageUri = substr($pageUri, strlen($langPrefix));
                                     break;
                                 }
                             }
@@ -124,7 +143,10 @@ Kirby::plugin('baukasten/sitemap', [
                                 }
 
                                 $transformedHref = $frontendUrl . $languagePrefix . '/' . $flatUri;
-                                $transformedHref = rtrim($transformedHref, '/');
+                                // Ensure trailing slash for consistency with frontend trailingSlash: 'always'
+                                if (substr($transformedHref, -1) !== '/') {
+                                    $transformedHref .= '/';
+                                }
                             }
                         }
 

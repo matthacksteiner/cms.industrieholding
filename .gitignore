@@ -5,10 +5,7 @@ __MACOSX
 .run
 .vscode/sftp.json
 .env
-
 .ddev/*
-!.ddev/config.yaml
-
 
 /content
 
@@ -37,3 +34,5 @@ site/plugins/*
 !site/plugins/baukasten-grid-blocks/
 !site/plugins/baukasten-cache-manager/
 !site/plugins/baukasten-api/
+!site/plugins/meta/
+!site/plugins/baukasten-meta/
